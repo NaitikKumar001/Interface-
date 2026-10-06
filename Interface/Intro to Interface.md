@@ -110,7 +110,9 @@ CPU
 # Interface vs Controller
 
 These two terms are related but should not be confused.
+
 ```Interface```
+
 An interface defines the communication rules and signals.
 For example, I²C defines:
 ```
@@ -122,7 +124,9 @@ Stop condition
 Data transfer rules
 Acknowledgement
 ```
+
 ```Controller```
+
 A controller is the hardware that implements those rules.
 For example:
 ```
