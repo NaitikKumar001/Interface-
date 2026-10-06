@@ -1,4 +1,5 @@
-What is an Interface?
+# What is an Interface?
+
 An interface is a defined method of communication between two systems or components.
 It defines how two components exchange information.
 
@@ -105,4 +106,72 @@ GPIO Controller
   │ Input register
   ↓
 CPU
+```
+# Interface vs Controller
+
+These two terms are related but should not be confused.
+```Interface```
+An interface defines the communication rules and signals.
+For example, I²C defines:
+```
+SDA
+SCL
+Addressing
+Start condition
+Stop condition
+Data transfer rules
+Acknowledgement
+```
+```Controller```
+A controller is the hardware that implements those rules.
+For example:
+```
+CPU
+ │
+ ↓
+I²C Controller
+ │
+ ↓
+I²C Bus
+ │
+ ↓
+Sensor
+```
+The CPU tells the I²C controller what it wants to do.
+The I²C controller then performs the required I²C operations.
+So:
+```
+Interface = rules/protocol used for communication
+Controller = hardware that implements those rules
+```
+# What is a Peripheral?
+
+Peripheral = A hardware component that performs a specific task outside the CPU/Core's main computation and allows the CPU to interact with the external world or provides additional functionality.
+
+Simple Definition
+
+> The CPU performs calculations and makes decisions, while peripherals handle specific hardware-related tasks.
+```
+PERIPHERAL 
+├── Communication Interfaces
+│   ├── GPIO
+│   ├── I²C
+│   ├── SPI
+│   └── UART
+│
+├── Timing
+│   ├── Timer
+│   └── Counter
+│
+├── Data Conversion
+│   ├── ADC
+│   └── DAC
+│
+├── Control
+│   └── PWM
+│
+└── Other Hardware Functions
+    ├── Watchdog Timer
+    ├── Interrupt Controller
+    └── etc.
 ```
