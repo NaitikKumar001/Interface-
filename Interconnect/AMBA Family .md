@@ -68,6 +68,13 @@ AXI provides advanced features such as:
 - Separate read and write channels
 - VALID/READY handshake
 ```
+| Channel | Short | Driven by | Carries |
+|---|---|---|---|
+| Write address | AW | Manager | Where to write, how many beats |
+| Write data | W | Manager | The data, which bytes are valid, "last beat" |
+| Write response | B | Subordinate | OK, or an error |
+| Read address | AR | Manager | Where to read, how many beats |
+| Read data | R | Subordinate | The data, status, "last beat" |
 
 # What is APB?
 
