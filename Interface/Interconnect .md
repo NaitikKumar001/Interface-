@@ -112,3 +112,135 @@ In short:
 «Interconnect = communication infrastructure
 
 On-chip interconnect = communication infrastructure inside the chip»
+
+# Jobs of Interconnect.
+There are three major jobs of Interconnect 
+```
+Address decoding
+Arbitration
+Bridging
+```
+# 12. What is Address Decoding?
+
+Let's break the term into two parts:
+
+Address + Decoding
+
+Meaning
+
+Address decoding means looking at a memory address and determining which hardware device should receive the request.
+
+For example:
+```
+CPU
+ │
+ │ Address = 0x10010000
+ ▼
+Interconnect
+ │
+ │ "Which address range does this belong to?"
+ ▼
+Memory Map
+ │
+ │ UART address range
+ ▼
+UART
+```
+The interconnect examines the address and compares it with the address ranges assigned to different devices.
+
+If the address falls within the UART range, the request is sent to the UART.
+
+Simple Definition
+
+«Address decoding = Determining the destination by examining the address.»
+
+---
+
+—> The Problem: What if Two CPUs Want the Same Memory?
+
+Consider this situation:
+```
+CPU 1 ─────┐
+           │
+           ▼
+        MEMORY
+           ▲
+           │
+CPU 2 ─────┘
+```
+Suppose both CPUs send requests to the same memory at the same time.
+
+The memory may not be able to handle both requests simultaneously in the same cycle.
+
+—> So a question arises:
+
+"«Who gets access first?»"
+
+This is where arbitration is needed.
+
+---
+
+#  What is Arbitration?
+
+Arbitration is the process of deciding which competing request gets access to a shared resource.
+
+For example:
+```
+CPU 1 ──┐
+        │
+CPU 2 ──┼──► ARBITER ───► Memory
+        │
+GPU   ──┘
+```
+The arbiter receives multiple requests and selects one of them to proceed.
+
+For example:
+```
+CPU 1 → GO
+CPU 2 → WAIT
+GPU   → WAIT
+```
+During a later cycle, another request may be selected:
+```
+CPU 1 → WAIT
+CPU 2 → GO
+GPU   → WAIT
+```
+The exact selection depends on the arbitration policy.
+
+Common Arbitration Methods
+
+1. TURN-BASED
+
+Requests get access in a rotating or predetermined order.
+```
+CPU 1 → CPU 2 → GPU → CPU 1 → ...
+```
+This helps provide fairness.
+
+2. PRIORITY-BASED
+
+Some requests are given higher priority than others.
+```
+High Priority   → CPU 1
+Medium Priority → CPU 2
+Low Priority    → GPU
+```
+The highest-priority request gets access first.
+
+3. WEIGHTED
+
+Each requester is given a certain weight, which influences how often it gets access.
+
+For example:
+```
+CPU 1 → Weight 3
+CPU 2 → Weight 2
+GPU   → Weight 1
+```
+A higher weight can give a requester more opportunities to access the shared resource.
+
+Simple Definition
+
+«Arbitration = Deciding which requester gets access when multiple hardware blocks compete for the same shared resource.»
+
