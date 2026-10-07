@@ -1,4 +1,4 @@
-# Types of Interconnect.
+p1# Types of Interconnect.
 
 An interconnect is the communication infrastructure that allows different hardware blocks inside a chip to communicate with each other.
 
@@ -182,4 +182,12 @@ CPU ── Router ── Router ── Memory
 There are multiple interconnected paths, and routers help direct communication toward the destination.
 
 ---
+## Comparing Interconnect Types
 
+| Feature | Shared Bus | Crossbar | Network-on-Chip (NoC) |
+|---|---|---|---|
+| **Scales to** | A few managers | ~16 × 16 | Hundreds of nodes |
+| **Wiring cost** | Low | Grows as managers × subordinates | Grows approximately linearly |
+| **Delay** | Low when quiet; high when busy | Low and steady | A few cycles per hop; predictable |
+| **Transfers at once** | 1 transfer | Many, if there is no clash | Many flows |
+| **Typical use** | Slow peripherals | Main backbone of most chips | Many-core CPUs, GPUs |
