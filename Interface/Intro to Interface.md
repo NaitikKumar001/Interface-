@@ -36,7 +36,7 @@ Example:
 ```
 There is no way from witch CPU directly connect to memory so we use interfaces here.
 
-#Why Do We Need Interfaces?
+# Why Do We Need Interfaces?
 Different components operate in different ways.
 A CPU internally works with:
 ```
